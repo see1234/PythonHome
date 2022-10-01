@@ -1,15 +1,95 @@
+# import random 
+# import re
+# from random import randint
+# def Task1():
+#     my_sum=0
+#     my_array=MakeFillArray(int(re.sub("[^0-9]", "", input('Введите число: '))), False)
+#     result=[]
+#     i=0
+#     print(my_array)
+#     for arr in my_array:
+#         if i % 2 == 0:
+#             result.append(arr)
+#             my_sum+=arr
+#         i+=1
+#     print(result, my_sum)
+# def Task2():
+#     my_array=MakeFillArray(4, False)
+#     result=[]
+#     print(my_array)
+#     i=0
+#     for arr in my_array:
+#         if len(my_array)/2 <= i:
+#             break
+#         result.append(arr*my_array[len(my_array)-1-i])
+#         i+=1
+#     print(result)
+# def Task3():
+#     my_input=int(re.sub("[^0-9]", "", input('Введите число: ')))
+#     result=''
+#     while my_input > 0:
+#         result+=str(my_input%2)
+#         my_input = my_input // 2
+#     print(result[::-1])
+# def Task4():
+#     my_array=MakeFillArray(int(re.sub("[^0-9]", "", input('Введите число: '))), True)
+#     print(my_array)
+#     numberMax = float('0.' + str(max(my_array)).split('.')[1])
+#     numberMin = float('0.' + str(min(my_array)).split('.')[1])
+#     difference=0
+#     if numberMax > numberMin:
+#         difference=round(numberMax-numberMin, 2)
+#     elif numberMax < numberMin:
+#         difference=round(numberMin-numberMax, 2)
+#     else:
+#         difference=0
+#     print(f'Min: {numberMin}, Max: {numberMax}, Difference: {difference}')
+# def Task5():
+#     n = int(re.sub("[^0-9]", "", input('Введите число: ')))
+#     my_array = Fibonachi(n)
+#     print(Fibonachi(n))
+# def Fibonachi(n):
+#     n+=1
+#     fibarray = []
+#     numberA = 1
+#     numberB = 1
+#     for i in range(n-1):
+#         fibarray.append(numberA)
+#         savenum=numberA
+#         numberA = numberB
+#         numberB = savenum + numberB
+#     numberA = 0
+#     numberB = 1
+#     for i in range (n):
+#         fibarray.insert(0, numberA)
+#         savenum=numberA
+#         numberA = numberB
+#         numberB = savenum - numberB
+#     return fibarray
+# def MakeFillArray(number, double):
+#     array=[]
+#     if not double:
+#         while number != 0:
+#             array.append(randint(1, 100))
+#             number-=1
+#         return array
+#     else:
+#         while number != 0:
+#             array.append(randint(1, 1000)/100)
+#             number-=1
+#         return array
+#Задания из 3 семинара
 import re
 import os
 import random 
 from random import randint
 
-
 def Task1():
     sub = re.sub("[^0-9]", "", input('Введите число: ')) #Удаляем не нужные символы
-    sum=0 #задаем счетчик подсчета суммы
+    my_sum=0 #задаем счетчик подсчета суммы
     for text in sub: #Перебираем текст
-        sum+=int(text) #добавляем в сумму цифру
-    print(sum) #выводим итоговый результат
+        my_sum+=int(text) #добавляем в сумму цифру
+    print(my_sum) #выводим итоговый результат
 def Task2():
     sub = re.sub("[^0-9]", "", input('Введите число: ')) #Удаляем не нужные символы
     n=int(sub)
@@ -31,10 +111,9 @@ def Task4():
     print('Массив из фаила:', readarray)
     print('Итог:', getMult(fillarray, readarray))
 def Task5():
-    array = [1, 4, 5, 6]
+    array = [randint(1,100),randint(1,100),randint(1,100)]
     print(array)
     print(Algorithm(array))
-    
 def Algorithm(array):
     for i in range(len(array)-1, 0, -1):
         j = random.randint(0, i + 1) 
@@ -71,10 +150,7 @@ def lim(n):
     i=1
     array=[]
     while i != n + 1:
-        if(i != 1):
-            array.append(round(((1 + 1 / i)**i + array[i-2]),2))
-        else:
-            array.append((1 + 1 / i)**i)
+        array.append(int_r((1 + 1 / i)**i))
         i+=1
     return array   
 def int_r(num):
@@ -116,7 +192,8 @@ def ReturningABeautifulText(n, AnExampleIsNeeded):
         result=result[:-2] + ' ]'
         return result
 Task3()
-# from math import sqrt
+#Задания из 2 семинара
+#from math import sqrt
 
 
 # def Task1():
@@ -140,11 +217,11 @@ Task3()
 #     y = int(input('Напишите координату Y: '))
 #     if x > 0 and y > 0:
 #         print('Позиция в 1 четверти')
-#     if x < 0 and y > 0:
+#     elif x < 0 and y > 0:
 #         print('Позиция в 2 четверти')
-#     if x < 0 and y < 0:
+#     elif x < 0 and y < 0:
 #         print('Позиция в 3 четверти')
-#     if x > 0 and y < 0:
+#     elif x > 0 and y < 0:
 #         print('Позиция в 4 четверти')
 
 
@@ -159,17 +236,17 @@ Task3()
 #         print('x < 0, y > 0')
 #     elif (n == 3):
 #         print('x < 0, y < 0')
-#     elif (n == 4):
+#     else:
 #         print('x > 0, y < 0')
 
 
 # def Task5():
 #     print('Введите координаты A:')
-#     Xa = float(input('  X: '))
-#     Ya = float(input('  Y: '))
+#     xa = float(input('  X: '))
+#     ya = float(input('  Y: '))
 #     print("Введите координаты B:")
-#     Xb = float(input('  X: '))
-#     Yb = float(input('  Y: '))
-#     print('Дистанция:', round(sqrt(((Xa-Xb)**2)+((Ya-Yb)**2)), 3))
+#     xb = float(input('  X: '))
+#     yb = float(input('  Y: '))
+#     print('Дистанция:', str(sqrt(((xa-xb)**2)+((ya-yb)**2)))[0:4])
 #Задания из 1 семинара
-
+ 
