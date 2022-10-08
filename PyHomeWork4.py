@@ -122,9 +122,7 @@ def Task5():
         else:
             result+=primer[0]+'x^'+primer[1]+'+'
     print(result[:-1])
-    
-Task5()
-
+ 
 def add_poly(*args):
     expval = sorted([(e, v) for poly in args for v, e in poly])
     return [
