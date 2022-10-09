@@ -42,6 +42,8 @@ def MnogoChlen(k):
         k-=1
     result+='+' + str(my_arraykoffient[0]) + '=0'
     return result
+
+    
 def Task1(): 
     
     # Вычислить число c заданной точностью d
@@ -60,6 +62,8 @@ def Task1():
         print(result)
     else:
         print('В задании: $10^{-1} ≤ d ≤10^{-10}$')
+
+
 def Task2():
     
     # Задайте натуральное число N. Напишите программу, которая составит список простых множителей числа N.
@@ -76,7 +80,10 @@ def Task2():
         else:
             mult+=1
     print(my_array)
+
+
 def Task3():
+    # Задайте последовательность чисел. Напишите программу, которая выведет список неповторяющихся элементов исходной последовательности.
     my_array = MakeFillArray(10, False, 10) 
     print(my_array)
     result_array = []
@@ -84,7 +91,15 @@ def Task3():
         if not i in result_array:
             result_array.append(i)
     print(result_array)
+
+
 def Task4():
+    # Задана натуральная степень k. Сформировать случайным образом список коэффициентов (значения от 0 до 100) многочлена и записать в файл многочлен степени k.
+
+    # Пример:
+
+    # - k=2 => 2*x² + 4*x + 5 = 0 или x² + 5 = 0 или 10*x² = 0
+
     k = int(re.sub("[^0-9.]", "", input("Введите натуральное число k: ")))
     if k <= 0:
         print('Ошибка')
@@ -92,7 +107,10 @@ def Task4():
     WriteFile('result',MnogoChlen(k))
     WriteFile('result2',MnogoChlen(k))
     print('в txt')
+
+
 def Task5():
+    # Даны два файла, в каждом из которых находится запись многочлена. Задача - сформировать файл, содержащий сумму многочленов.
     p1=ReadFile('result')[0].replace('=0', '')
     p2=ReadFile('result2')[0].replace('=0', '')
     my_arr4=[]

@@ -1,3 +1,4 @@
+
 from random import *
 import time
  
@@ -21,8 +22,10 @@ def Task2():
     while my_input != '0' or my_input != '1':
         if my_input == '0':
             PlayerVsPlayer()
+            break
         else:
             PlayerVsBot()
+            break
 
 
 def Task3():
@@ -34,8 +37,10 @@ def Task3():
     while my_input != '0' or my_input != '1':
         if my_input == '1':
             PlayerVsPlayerOX()
+            break
         else:
             PlayerVsBotOX()
+            break
 
 
 def Task4():
@@ -43,36 +48,9 @@ def Task4():
     print(rle(my_input))
     print(decode_rle(rle(my_input)))
 
-    
-def rle(data): 
-    encoding = ''
-    prev_char = ''
-    count = 1 
-    if not data: return ''
-    for char in data: 
-        if char != prev_char:
-            if prev_char: 
-                encoding += str(count) + prev_char 
-            count = 1
-            prev_char = char 
-        else:  
-            count += 1 
-    else: 
-        encoding += str(count) + prev_char 
-        return encoding
-def decode_rle(data: str) -> str:
-    decode = ''
-    count = ''
-    for char in data:
-        if char.isdigit():  
-            count += char 
-        else:
-            decode += char * int(count)
-            count = '' 
-    return decode
 
 def PlayerVsPlayerOX():
-    my_array=[[0,0,0], [0,0,0], [0,0,0]]
+    my_array=[[1,2,3], [4,5,6], [7,8,9]]
     for i in my_array:
         print(i)
     print('Ходи')
@@ -82,12 +60,35 @@ def PlayerVsPlayerOX():
             PlayerMoveOne(my_array)
             for i in my_array:
                 print('Игрок №1:',i)
+            stop=True
+            for i in my_array:
+                for j in i:
+                    try:
+                        o=int(j)
+                        stop=False
+                    except:
+                        p=0
+            if stop == True:
+                print('Ничья')
+                break
             print('Игрок №2 ходи')
         else:
             PlayerMoveTwo(my_array)
             for i in my_array:
                 print('Игрок №2:',i)
+            stop=True
+            for i in my_array:
+                for j in i:
+                    try:
+                        o=int(j)
+                        stop=False
+                    except:
+                        p=0
+            if stop == True:
+                print('Ничья')
+                break
             print('Игрок №1 ходи')
+
         b+=1
         my_arr2=[]
         my_arr3=[]
@@ -101,8 +102,10 @@ def PlayerVsPlayerOX():
                     my_arr3.append(a)
         if WhoWinPlayerVsPlayer(my_arr2, my_arr3) == True:
            break
+
+
 def PlayerVsBotOX():
-    my_array=[[0,0,0], [0,0,0], [0,0,0]]
+    my_array=[[1,2,3], [4,5,6], [7,8,9]]
     for i in my_array:
         print(i)
     print('Ходи')
@@ -112,10 +115,32 @@ def PlayerVsBotOX():
             PlayerMove(my_array)
             for i in my_array:
                 print('ВЫ:',i)
+            stop=True
+            for i in my_array:
+                for j in i:
+                    try:
+                        o=int(j)
+                        stop=False
+                    except:
+                        p=0
+            if stop == True:
+                print('Ничья')
+                break
         else:
             BotMove(my_array)
             for i in my_array:
                 print('БОТ:',i)
+            stop=True
+            for i in my_array:
+                for j in i:
+                    try:
+                        o=int(j)
+                        stop=False
+                    except:
+                        p=0
+            if stop == True:
+                print('Ничья')
+                break
             print('Бот ответил, теперь вы')
         b+=1
         my_arr2=[]
@@ -130,6 +155,8 @@ def PlayerVsBotOX():
                     my_arr3.append(a)
         if WhoWinPlayerVsBot(my_arr2, my_arr3) == True:
            break
+
+        
 def WhoWinPlayerVsPlayer(player_array, bot_array):
     my_winarray=[[1,2,3], [2,5,7], [1,5,9], [3,5,7], [1,4,7], [3,6,9], [7,8,9], [3,4,5]]
     player_array.sort()
@@ -184,36 +211,36 @@ def BotMove(my_array):
     print('Бот думает...')
     time.sleep(randint(0,2))
     if bot_input < 4:
-        if my_array[0][bot_input-1] == 0:   
+        if my_array[0][bot_input-1] != 'O' and my_array[0][bot_input-1] != 'X':   
             my_array[0][bot_input-1] = 'O'
         else:
             BotMove(my_array)
     elif bot_input < 7:
-        if my_array[1][bot_input-4] == 0:   
+        if my_array[1][bot_input-4] != 'O' and my_array[1][bot_input-4] != 'X':   
             my_array[1][bot_input-4] = 'O'
         else:
             BotMove(my_array)
     elif bot_input < 10:
-        if my_array[2][bot_input-7] == 0:   
+        if my_array[2][bot_input-7] != 'O' and my_array[2][bot_input-7] != 'X':   
             my_array[2][bot_input-7] = 'O'
         else:
             BotMove(my_array)
 def PlayerMove(my_array):
     my_input=int(input())
     if my_input < 4:
-        if my_array[0][my_input-1] == 0:   
+        if my_array[0][my_input-1] != 'O' and my_array[0][my_input-1] != 'X':   
             my_array[0][my_input-1] = 'X'
         else:
             print('уже заполнена')
             PlayerMove(my_array)
     elif my_input < 7:
-        if my_array[1][my_input-4] == 0:   
+        if my_array[1][my_input-4] != 'O' and my_array[1][my_input-4] != 'X':   
             my_array[1][my_input-4] = 'X'
         else:
             print('уже заполнена')
             PlayerMove(my_array)
     elif my_input < 10:
-        if my_array[2][my_input-7] == 0:   
+        if my_array[2][my_input-7] != 'O' and my_array[2][my_input-7] != 'X':   
             my_array[2][my_input-7] = 'X'
         else:
             print('уже заполнена')
@@ -221,43 +248,47 @@ def PlayerMove(my_array):
 def PlayerMoveOne(my_array):
     my_input=int(input())
     if my_input < 4:
-        if my_array[0][my_input-1] == 0:   
+        if my_array[0][my_input-1] != 'O' and my_array[0][my_input-1] != 'X':   
             my_array[0][my_input-1] = 'X'
         else:
             print('уже заполнена')
             PlayerMoveOne(my_array)
     elif my_input < 7:
-        if my_array[1][my_input-4] == 0:   
+        if my_array[1][my_input-4] != 'O' and my_array[1][my_input-4] != 'X':   
             my_array[1][my_input-4] = 'X'
         else:
             print('уже заполнена')
             PlayerMoveOne(my_array)
     elif my_input < 10:
-        if my_array[2][my_input-7] == 0:   
+        if my_array[2][my_input-7] != 'O' and my_array[2][my_input-7] != 'X':   
             my_array[2][my_input-7] = 'X'
         else:
             print('уже заполнена')
             PlayerMoveOne(my_array)
+
+
 def PlayerMoveTwo(my_array):
     my_input=int(input())
     if my_input < 4:
-        if my_array[0][my_input-1] == 0:   
+        if my_array[0][my_input-1] != 'O' and my_array[0][my_input-1] != 'X':   
             my_array[0][my_input-1] = 'O'
         else:
             print('уже заполнена')
             PlayerMoveTwo(my_array)
     elif my_input < 7:
-        if my_array[1][my_input-4] == 0:   
+        if my_array[1][my_input-4] != 'O' and my_array[1][my_input-4] != 'X':   
             my_array[1][my_input-4] = 'O'
         else:
             print('уже заполнена')
             PlayerMoveTwo(my_array)
     elif my_input < 10:
-        if my_array[2][my_input-7] == 0:   
+        if my_array[2][my_input-7] != 'O' and my_array[2][my_input-7] != 'X':   
             my_array[2][my_input-7] = 'O'
         else:
             print('уже заполнена')
             PlayerMoveTwo(my_array)
+
+
 def PlayerVsPlayer():
     total_candy = 2021
     max_take=28
@@ -337,5 +368,30 @@ def LimitCandyPickupBot(vs, array_playernames, max_take, total_candy):
         print(f'Бот ошибся, максимум {max_take}')
         return LimitCandyPickupBot(vs, array_playernames, max_take, total_candy)
 
-
-Task4()
+def rle(data): 
+    encoding = ''
+    prev_char = ''
+    count = 1 
+    if not data: return ''
+    for char in data: 
+        if char != prev_char:
+            if prev_char: 
+                encoding += str(count) + prev_char 
+            count = 1
+            prev_char = char 
+        else:  
+            count += 1 
+    else: 
+        encoding += str(count) + prev_char 
+        return encoding
+def decode_rle(data: str) -> str:
+    decode = ''
+    count = ''
+    for char in data:
+        if char.isdigit():  
+            count += char 
+        else:
+            decode += char * int(count)
+            count = '' 
+    return decode
+Task3()
