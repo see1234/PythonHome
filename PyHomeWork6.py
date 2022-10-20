@@ -114,7 +114,7 @@ def factstr(n):
     for num in range(2, n + 1):
         fact += '*' + str(num)
     return fact
-TaskUseListMapLambdaAndZip() #Задача с ламбадой и мапом и тд и зипом
+#TaskUseListMapLambdaAndZip() #Задача с ламбадой и мапом и тд и зипом
 
 def TaskUseListComprehension():
     #Задайте список из n чисел последовательности $(1+\frac 1 n)^n$ и выведите на экран их сумму.

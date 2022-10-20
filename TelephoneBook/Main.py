@@ -20,37 +20,37 @@
 import sys
 sys.path.append("modules")
 import Userinterface
-import DBtxt 
+import modules.DBtxt 
 def init():
-    DBtxt.createTableIfNot()
+    modules.DBtxt .createTableIfNot()
     while True:
         number=Userinterface.help()
         if number == '1':
-            DBtxt.printlines()
+            modules.DBtxt .printlines()
         elif number == '2':
-            DBtxt.add(insert_input = Userinterface.addTelephone(), id = DBtxt.createUser())   
+            modules.DBtxt .add(insert_input = Userinterface.addTelephone(), id = modules.DBtxt.createUser())   
         elif number == '3':
             num = Userinterface.remove()
             if num == 1:
-                DBtxt.deleteUser(deleteFromFio = True,fio = Userinterface.getFio())
+                modules.DBtxt.deleteUser(deleteFromFio = True,fio = Userinterface.getFio())
             elif num == 2:
-                DBtxt.deleteUser(deleteFromTelephone = True,telephone = Userinterface.getTelephone())
+                modules.DBtxt.deleteUser(deleteFromTelephone = True,telephone = Userinterface.getTelephone())
             elif num == 3:
-                DBtxt.deleteUser(deleteFromId = True,id = Userinterface.getId())
+                modules.DBtxt.deleteUser(deleteFromId = True,id = Userinterface.getId())
         elif number == '4':
             num = Userinterface.typeexport()
             if num == 1:
-                DBtxt.ExportDBinFileCSV()
+                modules.DBtxt.ExportDBinFileCSV()
             elif num == 2:
-                DBtxt.ExportDBinFileTxt()
+                modules.DBtxt.ExportDBinFileTxt()
             print('сгенерированный фаил экспорта')
         elif number == '5':
             arg = Userinterface.getFileCSVorTxt()
             print(arg)
             if '.csv' in arg:
-                DBtxt.ImportDBFileCSV(arg.replace('.csv', ''))
+                modules.DBtxt.ImportDBFileCSV(arg.replace('.csv', ''))
             elif '.txt' in arg:
-                DBtxt.ImportDBFileTxt(arg.replace('.txt', ''))
+                modules.DBtxt.ImportDBFileTxt(arg.replace('.txt', ''))
             print('сгенерированный фаил импорта')
         elif number == 'q' or number == 'quit' or number == 'exit()':
             break
