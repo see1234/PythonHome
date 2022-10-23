@@ -97,22 +97,26 @@ def deleteUser(deleteFromId = False, deleteFromFio = False, deleteFromTelephone 
 
 
 def ExportDBinFileTxt(path = "dbtxt/"):
+    file = open('exportfile' + '.txt','w')
+    file.close()
     for filename in glob.glob(os.path.join(path, '*.txt')):
         with open(os.path.join(os.getcwd(), filename), 'r') as f:
             result=''
             for i in f.readlines():
                 result+=i.replace('\n', '') + ',' # добавляем запятые
             file = open('exportfile' + '.txt','a')
-            file.write(result[:-1])
+            file.write(result[:-2] + '\n')
             file.close()
 def ExportDBinFileCSV(path = "dbtxt/"):
+    file = open('exportfile' + '.csv','w')
+    file.close()
     array=[]
     for filename in glob.glob(os.path.join(path, '*.txt')):
         with open(os.path.join(os.getcwd(), filename), 'r') as f:
             result=''
             for i in f.readlines():
                 result+=i.replace('\n', '') + ',' # добавляем запятые
-            array.append(result[:-1])
+            file.write(result[:-2] + '\n')
     with open('exportfile.csv', 'w', newline='') as myfile:    
         fieldnames = ['Телефон', 'ФИО', 'Комментарий']
         two_array=[]
@@ -124,14 +128,13 @@ def ExportDBinFileCSV(path = "dbtxt/"):
         writer.writerows(two_array)
 def ImportDBFileCSV(path = "exportfile"):
     path = path + '.csv'
-    a=0
     with open(path, 'r', newline='') as myfile:    
         for i in myfile.readlines():
-            a+=1
-            if a > 1:
+            if not i in 'ФИО':
                 add(insert_input = i.replace(';', ','), id = createUser())  
 def ImportDBFileTxt(path = "exportfile"):
     path = path + '.txt'
     with open(path, 'r', newline='') as myfile:    
         for i in myfile.readlines():
-            add(insert_input = i, id = createUser())  
+            if not i in 'ФИО':
+                add(insert_input = i, id = createUser())  
